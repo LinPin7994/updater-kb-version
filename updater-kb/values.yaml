@@ -1,0 +1,8 @@
+app_value:
+  schedule: "*/65 * * * *"
+  restartPolicy: "Never"
+  imageRepo: "<you_repo>"
+  imageName: "updater-kb"
+  imageTag: "1.1-23"
+  successfulJobsHistoryLimit: "1"
+  failedJobsHistoryLimit: "1"

@@ -1,0 +1,22 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ include "updater-kb.name" . }}
+spec:
+  schedule: {{ .Values.app_value.schedule | quote }}
+  successfulJobsHistoryLimit: {{ .Values.app_value.successfulJobsHistoryLimit }}
+  failedJobsHistoryLimit: {{ .Values.app_value.failedJobsHistoryLimit }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          imagePullSecrets:
+            - name: <secret_name>
+          containers:
+          - name: {{ include "updater-kb.name" . }}
+            {{ if .Values.app_value.imageTag }}
+            image: "{{ .Values.app_value.imageRepo }}/{{ .Values.app_value.imageName }}:{{ .Values.app_value.imageTag }}"
+            {{ else }}
+            image: "{{ .Values.app_value.imageRepo }}/{{ .Values.app_value.imageName }}"
+            {{ end }}
+          restartPolicy: {{ .Values.app_value.restartPolicy }}

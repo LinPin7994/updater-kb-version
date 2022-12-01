@@ -1,0 +1,8 @@
+app_value:
+  schedule: "@hourly"
+  restartPolicy: "Never"
+  imageRepo: "<you_repo>"
+  imageName: "updater-version"
+  imageTag: "1.1-7"
+  successfulJobsHistoryLimit: "1"
+  failedJobsHistoryLimit: "1"

@@ -1,0 +1,4 @@
+gitPython
+jira
+atlassian-python-api==3.25.0
+PyYAML==6.0
